@@ -21,9 +21,7 @@ var dependencyPromise = module.exports = {
   trigger: function (event) {
     if (!this.events) return false;
     var e = this.events[event]
-      , childs
-      , i, child
-      , parents, parent;
+      , childs, i, child, parents, parent;
     if (e.triggered) return false;
 
     // Check that all children have been triggered
@@ -42,9 +40,8 @@ var dependencyPromise = module.exports = {
 
     // Run my callbacks
     e.callbackArgs = Array.prototype.slice.call(arguments, 1);
-    if (e.callbacks) for (var j = 0, l = e.callbacks.length; j < l; j++) {
+    if (e.callbacks) for (var j = 0, l = e.callbacks.length; j < l; j++)
       e.callbacks[j][0].apply(e.callbacks[j][1], e.callbackArgs)
-    }
 
     // Notify my parents that I've been triggered
     parents = e.parents;
@@ -54,9 +51,8 @@ var dependencyPromise = module.exports = {
         parent = parents[i];
         e = parent.events[event];
         e.numChildrenTriggered++;
-        if (e.numChildrenTriggered === e.children.length) {
+        if (e.numChildrenTriggered === e.children.length)
           parent.trigger(event);
-        }
       }
     }
     return true;
@@ -69,5 +65,6 @@ var dependencyPromise = module.exports = {
       this.events[event].callbacks || (this.events[event].callbacks = []);
       this.events[event].callbacks.push([fn, scope]);
     }
+    return this;
   }
 };
