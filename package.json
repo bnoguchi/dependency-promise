@@ -1,0 +1,26 @@
+{
+  "name": "dependency-promise",
+  "description": "Add the Deferrable Pattern to Your Dependency Graphs",
+  "version": "0.1.0",
+  "keywords": [ "node", "dependencies", "promise", "deferrable" ],
+  "homepage": "https://github.com/bnoguchi/dependency-promise/",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bnoguchi/dependency-promise.git"
+  },
+  "author": "Brian Noguchi <brian.noguchi@gmail.com> (https://github.com/bnoguchi/)",
+  "main": "./dependency_promise.js",
+  "directories": {
+    "lib": "."
+  },
+  "scripts": {
+    "test": "make test"
+  },
+  "dependencies": {
+    "expresso": ">= 0.7.2"
+  },
+  "engines": {
+    "node": ">=0.4.1"
+  },
+  "licenses": [ "MIT" ]
+}
