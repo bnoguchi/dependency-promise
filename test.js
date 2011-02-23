@@ -144,5 +144,13 @@ module.exports = {
     mama.dependsOn('loaded', [kid]);
     kid.trigger('loaded');
     counter.should.equal(3);
+  },
+
+  'a parent should be able to get its dependencies': function () {
+    var parent = new Node()
+      , childOne = new Node()
+      , childTwo = new Node();
+    parent.dependsOn('loaded', [childOne, childTwo]);
+    parent.dependenciesFor('loaded').should.eql([childOne, childTwo]);
   }
 };

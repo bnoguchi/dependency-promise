@@ -96,9 +96,22 @@ will behave in the same way, too. And so on and so forth.
 ## API
 
 - `dependsOn(event, children)`
+  Sets up the dependency relationship between `this` and the `children` Array
+  based around the `event` string. Each member of `children` must also have
+  dependency-promise mixed in
 - `trigger(event[, args..])`
+  Triggers the event with name `event`. You can optionally pass in
+  variable-length arguments. Triggering the event will do 2 things.
+  First, it will fire any callbacks for the `event`, passing any
+  arguments that may also have been passed to `trigger(...)`
+  Second, it will notify `this`'s parents that `this` has been triggered.
 - `isTriggered(event)`
+  Returns true/false, specifying whether `this` has had `event` triggered.
 - `on(event, callback, scope)`
+  Associates a `callback` and `scope` to be invoked when `this` triggers
+  said `event`.
+- `dependenciesFor(event)`
+  Returns the Array of dependencies (children) for the given `event`.
 
 ## Tests
 To run tests:

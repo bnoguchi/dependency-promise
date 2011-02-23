@@ -1,7 +1,7 @@
 {
   "name": "dependency-promise",
   "description": "Add the Deferrable Pattern to Your Dependency Graphs",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "keywords": [ "node", "dependencies", "promise", "deferrable" ],
   "homepage": "https://github.com/bnoguchi/dependency-promise/",
   "repository": {

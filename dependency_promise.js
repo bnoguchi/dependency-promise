@@ -66,5 +66,9 @@ var dependencyPromise = module.exports = {
       this.events[event].callbacks.push([fn, scope]);
     }
     return this;
+  },
+  dependenciesFor: function (event) {
+    if (!this.events || !this.events[event]) return [];
+    return this.events[event].children || [];
   }
 };
