@@ -21,21 +21,23 @@ You can use dependency promise by mixing it into your objects:
 ## Explanation
 Deferrable-promise is perfect for the following scenario:
     You have an object that depends on other objects.
-    You want to defer a function from being invoked
-    until all of a parent's objects child objects fire an
-    event.
+    You want to defer a function from being invoked until
+    all of a parent's objects child objects fire an event.
 
 One example domain is resolving dependencies between files.
 Suppose you want to compile a top-level file and its
 dependencies into a single file. You can use dependency-promise
 to set up a dependency graph between all the files and then load
-the files asynchronously. As each file is loaded into memory,
-you can fire off 'loaded' events. When a single file's dependencies
-are all loaded, that file will be notified. Upon notification that all
+the files asynchronously. Consider a single file in this hierarchy.
+As each of its children files is loaded into memory, each child file
+fires off a 'loaded' event and notifies the parent file that it has been
+'loaded'. When that single file's dependencies are ALL loaded,
+that single file will be notified. Upon notification that all
 it's dependencies have been 'loaded', that file will also fire a 'loaded'
 event. This will result in it firing any callbacks related to the 'loaded'
 event. Moreover, if any files depend on this file, then it will notify
-those parent files that it has been loaded. And so on and so forth.
+its own parent files that it has been loaded. Each of those parent files
+will behave in the same way, too. And so on and so forth.
 
 ## Example
     var dependencyPromise = require('dependency-promise');
