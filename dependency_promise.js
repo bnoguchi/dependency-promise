@@ -5,22 +5,24 @@ var dependencyPromise = module.exports = {
       , childs = e.children || (e.children = [])
       , i = children.length, cevents, ce
       , parents, numChildrenTriggered;
+    e.numChildrenTriggered || (e.numChildrenTriggered = 0);
     while (i--) {
       cevents = children[i].events || (children[i].events = {});
       ce = cevents[event] || (cevents[event] = {});
       parents = cevents[event].parents || (cevents[event].parents = []);
       parents.push(this); // TODO Double counting check
+      if (ce.triggered) e.numChildrenTriggered++;
     }
     childs.push.apply(childs, children);
-    e.numChildrenTriggered || (e.numChildrenTriggered = 0);
+    if (e.numChildrenTriggered === childs.length) this.trigger(event);
     return this;
   },
   isTriggered: function (event) {
     return !!this.events && !!this.events[event] && !!this.events[event].triggered;
   },
   trigger: function (event) {
-    if (!this.events) return false;
-    var e = this.events[event]
+    this.events || (this.events = {});
+    var e = this.events[event] || (this.events[event] = {})
       , childs, i, child, parents, parent;
     if (e.triggered) return false;
 

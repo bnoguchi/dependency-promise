@@ -152,5 +152,17 @@ module.exports = {
       , childTwo = new Node();
     parent.dependsOn('loaded', [childOne, childTwo]);
     parent.dependenciesFor('loaded').should.eql([childOne, childTwo]);
+  },
+
+  'depending on a child after the child has triggered the event should work': function () {
+    var parent = new Node()
+      , child = new Node()
+      , counter = 0;
+    child.trigger('loaded');
+    parent.on('loaded', function () {
+      counter++;
+    });
+    parent.dependsOn('loaded', [child]);
+    counter.should.equal(1);
   }
 };
