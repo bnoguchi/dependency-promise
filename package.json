@@ -16,11 +16,11 @@
   "scripts": {
     "test": "make test"
   },
-  "dependencies": {
+  "devDependencies": {
     "expresso": ">= 0.7.2"
   },
   "engines": {
-    "node": ">=0.4.1"
+    "node": ">=0.4.x"
   },
   "licenses": [ "MIT" ]
 }
