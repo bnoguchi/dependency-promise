@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/bnoguchi/dependency-promise.png)](http://travis-ci.org/bnoguchi/dependency-promise)
 dependency-promise
 ===================
 
